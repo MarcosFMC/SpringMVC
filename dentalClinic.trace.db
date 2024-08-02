@@ -1,0 +1,44 @@
+2024-08-01 17:26:12.612497-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "CREATE TABLE PATIENTS (ID INT AUTO_INCREMENT PRIMARY KEY,NAME VARCHAR(100) NOT NULL, LAST_NAME VARCHAR(100) NOT NULL, CARD_IDENTITY INT NOT NULL, ADMISSION_OF_DATE DATE NOT NULL, ADDRESS_ID INT NOT NULL,EMAIL VARCHAR(100) NOT NULL[*]"; se esperaba "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE PATIENTS (ID INT AUTO_INCREMENT PRIMARY KEY,NAME VARCHAR(100) NOT NULL, LAST_NAME VARCHAR(100) NOT NULL, CARD_IDENTITY INT NOT NULL, ADMISSION_OF_DATE DATE NOT NULL, ADDRESS_ID INT NOT NULL,EMAIL VARCHAR(100) NOT NULL[*]"; expected "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE PATIENTS (ID INT AUTO_INCREMENT PRIMARY KEY,NAME VARCHAR(100) NOT NULL, LAST_NAME VARCHAR(100) NOT NULL, CARD_IDENTITY INT NOT NULL, ADMISSION_OF_DATE DATE NOT NULL, ADDRESS_ID INT NOT NULL,EMAIL VARCHAR(100) NOT NULL [42001-224]
+2024-08-01 17:28:51.992082-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "CREATE TABLE PATIENTS (ID INT AUTO_INCREMENT PRIMARY KEY,NAME VARCHAR(100) NOT NULL, LAST_NAME VARCHAR(100) NOT NULL, CARD_IDENTITY INT NOT NULL, ADMISSION_OF_DATE DATE NOT NULL, ADDRESS_ID INT NOT NULL,EMAIL VARCHAR(100) NOT NULL[*]"; se esperaba "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"
+Syntax error in SQL statement "CREATE TABLE PATIENTS (ID INT AUTO_INCREMENT PRIMARY KEY,NAME VARCHAR(100) NOT NULL, LAST_NAME VARCHAR(100) NOT NULL, CARD_IDENTITY INT NOT NULL, ADMISSION_OF_DATE DATE NOT NULL, ADDRESS_ID INT NOT NULL,EMAIL VARCHAR(100) NOT NULL[*]"; expected "DEFAULT, GENERATED, ON UPDATE, DEFAULT ON NULL, SEQUENCE, SELECTIVITY, COMMENT, CONSTRAINT, COMMENT, PRIMARY KEY, UNIQUE, NOT NULL, CHECK, REFERENCES, ,, )"; SQL statement:
+CREATE TABLE PATIENTS (ID INT AUTO_INCREMENT PRIMARY KEY,NAME VARCHAR(100) NOT NULL, LAST_NAME VARCHAR(100) NOT NULL, CARD_IDENTITY INT NOT NULL, ADMISSION_OF_DATE DATE NOT NULL, ADDRESS_ID INT NOT NULL,EMAIL VARCHAR(100) NOT NULL [42001-224]
+2024-08-01 17:30:15.708509-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO ADDRESSES(STREET, NUMBER, LOCATION, PROVINCE) VALUES('Calle A', 101,'Lujan de Cuyo','Mendoza); INSERT INTO PATIENTS(NAME,LASTNAME, CARD_IDENTITY, ADMISSION_OF_DATE, ADDRESS_ID,EMAIL) VALUES('Juan', 'Perez', 1231254, '2023-11-10', 1, 'ashevalel2@gmail.com'); INSERT INTO DENTIST(REGISTRATION, NAME, LASTNAME) VALUES(123,'Carlos','Muelas[*]')"
+Syntax error in SQL statement "INSERT INTO ADDRESSES(STREET, NUMBER, LOCATION, PROVINCE) VALUES('Calle A', 101,'Lujan de Cuyo','Mendoza); INSERT INTO PATIENTS(NAME,LASTNAME, CARD_IDENTITY, ADMISSION_OF_DATE, ADDRESS_ID,EMAIL) VALUES('Juan', 'Perez', 1231254, '2023-11-10', 1, 'ashevalel2@gmail.com'); INSERT INTO DENTIST(REGISTRATION, NAME, LASTNAME) VALUES(123,'Carlos','Muelas[*]')"; SQL statement:
+INSERT INTO ADDRESSES(STREET, NUMBER, LOCATION, PROVINCE) VALUES('Calle A', 101,'Lujan de Cuyo','Mendoza); INSERT INTO PATIENTS(NAME,LASTNAME, CARD_IDENTITY, ADMISSION_OF_DATE, ADDRESS_ID,EMAIL) VALUES('Juan', 'Perez', 1231254, '2023-11-10', 1, 'ashevalel2@gmail.com'); INSERT INTO DENTIST(REGISTRATION, NAME, LASTNAME) VALUES(123,'Carlos','Muelas') [42000-224]
+2024-08-01 17:32:59.637681-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "LASTNAME" no encontrada
+Column "LASTNAME" not found; SQL statement:
+INSERT INTO PATIENTS(NAME,LASTNAME, CARD_IDENTITY, ADMISSION_OF_DATE, ADDRESS_ID,EMAIL) VALUES('Juan', 'Perez', 1231254, '2023-11-10', 1, 'ashevalel2@gmail.com'); INSERT INTO DENTIST(REGISTRATION, NAME, LASTNAME) VALUES(123,'Carlos','Muelas') [42122-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:759)
+	at org.h2.command.Parser.parseColumn(Parser.java:1190)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1175)
+	at org.h2.command.Parser.parseInsert(Parser.java:1549)
+	at org.h2.command.Parser.parsePrepared(Parser.java:719)
+	at org.h2.command.Parser.parse(Parser.java:592)
+	at org.h2.command.Parser.parse(Parser.java:564)
+	at org.h2.command.Parser.prepareCommand(Parser.java:483)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:639)
+	at org.h2.command.CommandList.executeRemaining(CommandList.java:53)
+	at org.h2.command.CommandList.update(CommandList.java:66)
+	at org.h2.command.Command.executeUpdate(Command.java:256)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at com.example.DentalClinicMVC.dao.DB.createTables(DB.java:56)
+	at com.example.DentalClinicMVC.DentalClinicMvcApplication.main(DentalClinicMvcApplication.java:11)
+2024-08-01 17:34:06.786004-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "DENTIST" no encontrada
+Table "DENTIST" not found; SQL statement:
+INSERT INTO DENTIST(REGISTRATION, NAME, LAST_NAME) VALUES(123, 'Carlos', 'Muelas'); [42102-224]
+2024-08-01 17:34:20.896260-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "DENTIST" no encontrada
+Table "DENTIST" not found; SQL statement:
+INSERT INTO DENTIST(REGISTRATION, NAME, LAST_NAME) VALUES(123, 'Carlos', 'Muelas'); [42102-224]
