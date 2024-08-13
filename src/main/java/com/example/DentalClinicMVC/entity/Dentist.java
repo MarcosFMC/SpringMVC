@@ -1,8 +1,18 @@
-package com.example.DentalClinicMVC.model;
+package com.example.DentalClinicMVC.entity;
 
+
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "dentists")
 public class Dentist {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private Integer registration;
 
@@ -10,24 +20,23 @@ public class Dentist {
 
     private String lastName;
 
-    public Dentist(Integer registration, String name, String lastName) {
-        this.registration = registration;
-        this.name = name;
-        this.lastName = lastName;
+    @OneToMany(mappedBy = "dentist")
+    private Set<Appointment> appointments = new HashSet<>();
+
+    public Dentist() {
+    }
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
-    public Dentist(Integer id, Integer registration, String name, String lastName) {
-        this.id = id;
-        this.registration = registration;
-        this.name = name;
-        this.lastName = lastName;
-    }
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

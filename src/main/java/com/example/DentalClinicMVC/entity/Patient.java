@@ -1,35 +1,36 @@
-package com.example.DentalClinicMVC.model;
+package com.example.DentalClinicMVC.entity;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "patients")
 public class Patient {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String lastName;
     private Integer cardIdentity;
     private LocalDate admissionOfDate;
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
     private Address address;
     private String email;
-    public Patient(String name, String lastName, Integer cardIdentity, LocalDate admissionOfDate, Address address,String email) {
-        this.name = name;
-        this.lastName = lastName;
-        this.cardIdentity = cardIdentity;
-        this.admissionOfDate = admissionOfDate;
-        this.address = address;
-        this.email = email;
+    @OneToMany(mappedBy = "patient")
+    private Set<Appointment> appointments = new HashSet<>();
+    public Patient() {
     }
-
-    public Patient(Integer id, String name, String lastName, Integer cardIdentity, LocalDate admissionOfDate, Address address, String email) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.cardIdentity = cardIdentity;
-        this.admissionOfDate = admissionOfDate;
-        this.address = address;
-        this.email = email;
+    public Set<Appointment> getAppointments() {
+        return appointments;
     }
-
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
+    }
     public String getEmail() {
         return email;
     }
@@ -38,11 +39,11 @@ public class Patient {
         this.email = email;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
